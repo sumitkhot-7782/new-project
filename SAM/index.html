@@ -303,6 +303,118 @@
 
         </div>
     </div>
+
+
+    <script>
+
+/////////////////////////////////////////////////
+// 1️⃣ Smooth Reveal On Scroll
+/////////////////////////////////////////////////
+
+const reveals = document.querySelectorAll(
+    "#about, #skills, #education, #project, #achievements, #contact"
+);
+
+function revealOnScroll() {
+    reveals.forEach(section => {
+        const windowHeight = window.innerHeight;
+        const revealTop = section.getBoundingClientRect().top;
+
+        if (revealTop < windowHeight - 100) {
+            section.classList.add("active-reveal");
+        }
+    });
+}
+
+window.addEventListener("scroll", revealOnScroll);
+
+
+/////////////////////////////////////////////////
+// 2️⃣ Stagger Skill Animation
+/////////////////////////////////////////////////
+
+const skillItems = document.querySelectorAll(".item");
+
+skillItems.forEach((item, index) => {
+    item.style.animationDelay = `${index * 0.1}s`;
+    item.classList.add("skill-animate");
+});
+
+
+/////////////////////////////////////////////////
+// 3️⃣ 3D Tilt Effect For Project Cards
+/////////////////////////////////////////////////
+
+const projects = document.querySelectorAll(".project");
+
+projects.forEach(project => {
+    project.addEventListener("mousemove", (e) => {
+        const rect = project.getBoundingClientRect();
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
+
+        const rotateX = ((y / rect.height) - 0.5) * 10;
+        const rotateY = ((x / rect.width) - 0.5) * -10;
+
+        project.style.transform =
+            `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+    });
+
+    project.addEventListener("mouseleave", () => {
+        project.style.transform = "perspective(1000px) rotateX(0) rotateY(0)";
+    });
+});
+
+
+/////////////////////////////////////////////////
+// 4️⃣ Typing Effect (Your About Section)
+/////////////////////////////////////////////////
+
+const aboutText = `I am a dedicated Full Stack Developer specializing in the MERN stack with hands-on experience in building responsive secure backend systems. Beyond Technical skills, I enjoy solving real-world problems and building scalable solutions.`;
+
+const aboutElement = document.querySelector("#about .content");
+const originalText = aboutElement.innerHTML;
+
+aboutElement.innerHTML = "";
+let i = 0;
+
+function typingEffect() {
+    if (i < aboutText.length) {
+        aboutElement.innerHTML += aboutText.charAt(i);
+        i++;
+        setTimeout(typingEffect, 20);
+    }
+}
+
+window.addEventListener("load", typingEffect);
+
+
+/////////////////////////////////////////////////
+// 5️⃣ Active Navigation Highlight
+/////////////////////////////////////////////////
+
+const sections = document.querySelectorAll("section, div[id]");
+const navLinks = document.querySelectorAll("nav a");
+
+window.addEventListener("scroll", () => {
+    let current = "";
+
+    sections.forEach(section => {
+        const sectionTop = section.offsetTop - 150;
+        if (scrollY >= sectionTop) {
+            current = section.getAttribute("id");
+        }
+    });
+
+    navLinks.forEach(link => {
+        link.classList.remove("active");
+        if (link.getAttribute("href") === `#${current}`) {
+            link.classList.add("active");
+        }
+    });
+});
+
+</script>
 </body>
 
 </html>
