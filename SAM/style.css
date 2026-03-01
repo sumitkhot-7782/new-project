@@ -570,3 +570,94 @@ copy */
 
 
 
+
+
+/* ========================================= */
+/* 🔥 Smooth Reveal Animation */
+/* ========================================= */
+
+#about,
+#skills,
+#education,
+#project,
+#achievements,
+#contact {
+    opacity: 0;
+    transform: translateY(50px);
+    transition: all 0.8s ease;
+}
+
+.active-reveal {
+    opacity: 1 !important;
+    transform: translateY(0px) !important;
+}
+
+
+/* ========================================= */
+/* 🔥 Skill Animation */
+/* ========================================= */
+
+.skill-animate {
+    animation: skillFade 0.6s ease forwards;
+    opacity: 0;
+}
+
+@keyframes skillFade {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+
+/* ========================================= */
+/* 🔥 Floating Sidebar */
+/* ========================================= */
+
+.sidebar {
+    animation: floatSidebar 4s ease-in-out infinite;
+}
+
+@keyframes floatSidebar {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-6px); }
+}
+
+
+/* ========================================= */
+/* 🔥 Smooth Nav Active */
+/* ========================================= */
+
+nav a {
+    transition: 0.3s ease;
+}
+
+nav a.active {
+    color: #FFBF00;
+}
+
+
+/* ========================================= */
+/* 🔥 Subtle Background Movement */
+/* ========================================= */
+
+body::before {
+    content: "";
+    position: fixed;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle at center, rgba(255,191,0,0.05), transparent 60%);
+    animation: moveBg 15s linear infinite;
+    z-index: -1;
+}
+
+@keyframes moveBg {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
